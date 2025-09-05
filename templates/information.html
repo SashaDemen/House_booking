@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Information{% endblock %}
+
+{% block content %}
+<h2>Users</h2>
+<div class="form-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h2>Houses</h2>
+<div class="form-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>City</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Size</th>
+                <th>Rooms</th>
+                <th>Owner</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for house in houses %}
+                <tr>
+                    <td>{{ house.country }}</td>
+                    <td>{{ house.city }}</td>
+                    <td>{{ house.type }}</td>
+                    <td>{{ house.description }}</td>
+                    <td>${{ house.price }}</td>
+                    <td>{{ house.size }} sq. meters</td>
+                    <td>{{ house.rooms }}</td>
+                    <td>{{ house.owner.username }}</td>
+                    <td>
+                        {% if house.image_url %}
+                            <img src="{{ url_for('static', filename=house.image_url) }}" alt="House Image">
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h2>Bookings</h2>
+<div class="form-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Reservation</th>
+                <th>Reservation Time</th>
+                <th>House ID</th>
+                <th>User ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>${{ booking.price }}</td>
+                    <td>{{ booking.reservation }}</td>
+                    <td>{{ booking.reservation_time }}</td>
+                    <td>{{ booking.house_id }}</td>
+                    <td>{{ booking.user_id }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

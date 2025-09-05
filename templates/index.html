@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Available Houses</h2>
+<div class="house-list">
+{% for house in houses %}
+<div class="house-item">
+<img src="{{ url_for('static', filename='' ~ house.image_url) }}" alt="House Image">
+<p>{{ house.city }}, {{ house.country }} - {{ house.type }}</p>
+<a href="{{ url_for('house_details', house_id=house.id) }}">View Details</a>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
+

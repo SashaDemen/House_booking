@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}House Details{% endblock %}
+
+{% block content %}
+    <h2>House Details</h2>
+    <div class="house-details">
+        <!-- house_details.html -->
+<img src="{{ url_for('static', filename=house.image_url) }}" alt="House Image">
+
+        <div class="house-info">
+            <p><strong>Country:</strong> {{ house.country }}</p>
+            <p><strong>City:</strong> {{ house.city }}</p>
+            <p><strong>Type:</strong> {{ house.type }}</p>
+            <p><strong>Description:</strong> {{ house.description }}</p>
+            <p><strong>Price:</strong> ${{ house.price }}</p>
+            <p><strong>Size:</strong> {{ house.size }} sq. meters</p>
+            <p><strong>Rooms:</strong> {{ house.rooms }}</p>
+            <p><strong>Owner:</strong> {{ house.owner.username }}</p>
+            <a href="{{ url_for('book_house', house_id=house.id) }}" class="btn">Book Now</a>
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn">Back to List</a>
+{% endblock %}
